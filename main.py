@@ -32,10 +32,9 @@ def keep_alive():
     while True:
         try:
             requests.get(BOT_URL)
-            print("Ping successful")
         except:
-            print("Ping failed")
-        time.sleep(10)
+            pass
+        time.sleep(20)
 
 
 # Start the pinging thread
