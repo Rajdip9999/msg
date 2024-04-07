@@ -1,5 +1,8 @@
 import pyrogram
 from pyrogram import Client, filters
+import requests  # For making the pinging requests
+import threading
+import time
 
 # Replace with your actual Telegram API credentials
 API_ID = 28015381  # Your API ID
@@ -21,6 +24,23 @@ def echo_handler(client, message):
     client.send_message(message.chat.id, RESPONSE_MESSAGE)
 
 
+BOT_URL = "https://rplymsg-bbaa77329b52.herokuapp.com/"  # Replace with your Heroku URL
+
+
+def keep_alive():
+    """Pings the bot's URL every 10 seconds"""
+    while True:
+        try:
+            requests.get(BOT_URL)
+            print("Ping successful")
+        except:
+            print("Ping failed")
+        time.sleep(10)
+
+
+# Start the pinging thread
+ping_thread = threading.Thread(target=keep_alive)
+ping_thread.start()
 if __name__ == "__main__":
     print("Bot starting...")
     app.run()
