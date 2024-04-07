@@ -2,9 +2,9 @@ import pyrogram
 from pyrogram import Client, filters
 
 # Replace with your actual Telegram API credentials
-API_ID = 29146699  # Your API ID
-API_HASH = "7625bbb67f28bd371682b737ebfe6d3a"
-BOT_TOKEN = "6405792409:AAEpzhXGcJ89O4SGoHiFpW3NMLf85jwLIZ4"
+API_ID = 28015381  # Your API ID
+API_HASH = "d1be9454b29326ed41b0acdef11d202c"
+BOT_TOKEN = "7088928556:AAFulnC-duhQj2mMgyQSt0vob-KKBz3Gk-0"
 
 # IDs of users you don't want to respond to
 EXCLUDED_USER_IDS = [710543063, 6444822565]  # Replace with actual user IDs
