@@ -35,7 +35,7 @@ def keep_alive():
             requests.get(BOT_URL)
         except:
             pass
-        time.sleep(20)
+        time.sleep(30)
 
 
 @app.on_message(filters.private & ~filters.user(EXCLUDED_USER_IDS))
