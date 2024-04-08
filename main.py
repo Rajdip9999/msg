@@ -14,7 +14,7 @@ BOT_TOKEN = "7088928556:AAFulnC-duhQj2mMgyQSt0vob-KKBz3Gk-0"
 EXCLUDED_USER_IDS = [710543063, 6444822565]  # Replace with actual user IDs
 
 # The message you want to send
-RESPONSE_MESSAGE = "You have to join this channel first @DextiNBots"
+RESPONSE_MESSAGE = "You have to join this channel first https://t.me/+dcABabRb3ioxMzM1"
 
 app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -33,9 +33,24 @@ def track_channel_joins(client, update):
 
 
 @app.on_message(filters.private & ~filters.user(EXCLUDED_USER_IDS))
-def echo_handler(client, message):
-    if message.chat.id not in joined_users:
-        client.send_message(message.chat.id, RESPONSE_MESSAGE)
+async def echo_handler(client, message):
+    """Handles incoming messages and sends the response"""
+    try:
+        user_status = await client.get_chat_member(
+            chat_id=REQUIRED_CHANNEL_ID, user_id=message.from_user.id
+        )
+        if user_status.status in [
+            "member",
+            "creator",
+            "administrator",
+        ]:  # Check if they've joined
+            return  # Stop messaging if the user is in the channel
+    except Exception as e:
+        print(f"Error checking channel membership: {e}")  # Log any errors
+
+    client.send_message(
+        message.chat.id, RESPONSE_MESSAGE
+    )  # Only send if not in channel
 
 
 def keep_alive():
