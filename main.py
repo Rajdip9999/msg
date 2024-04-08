@@ -6,18 +6,15 @@ import time
 import logging
 
 # Replace with your Telegram API credentials
-API_ID = 29146699
-API_HASH = "7625bbb67f28bd371682b737ebfe6d3a"
-BOT_TOKEN = "7004730419:AAFSHpKZvF7Ax5teAZvanWk4Gc0rITFtCwE"
+API_ID = 45345
+API_HASH = "456456"
+BOT_TOKEN = "7004730419:456"
 
 # IDs of users you don't want to respond to
 EXCLUDED_USER_IDS = [12345678, 87654321]
 
 # The message you want to send
 RESPONSE_MESSAGE = "If you want to use this bot you have to join this channel first: https://t.me/+dcABabRb3ioxMzM1"
-
-# Required channel details
-REQUIRED_CHANNEL_ID = -1002100129931
 
 # Heroku URL for pinger
 BOT_URL = "https://rplymsg-bbaa77329b52.herokuapp.com/"
