@@ -14,7 +14,7 @@ BOT_TOKEN = "7004730419:AAFSHpKZvF7Ax5teAZvanWk4Gc0rITFtCwE"
 EXCLUDED_USER_IDS = [710543063, 6444822565]  # Replace with actual user IDs
 
 # The message you want to send
-RESPONSE_MESSAGE = "You have to join this channel first @DextiNBots"
+RESPONSE_MESSAGE = "You have to join this channel first https://t.me/+dcABabRb3ioxMzM1"
 
 app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
