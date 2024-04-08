@@ -39,34 +39,12 @@ def keep_alive():
 
 
 @app.on_message(filters.private & ~filters.user(EXCLUDED_USER_IDS))
-async def echo_handler(client, message):
-    """Handles incoming messages and sends the response"""
-    try:
-        user_status = await client.get_chat_member(
-            chat_id=REQUIRED_CHANNEL_ID, user_id=message.from_user.id
-        )
-        if user_status.status in ["member", "creator", "administrator"]:
-            logging.info(
-                f"User {message.from_user.id} is in the channel. Message not sent."
-            )
-            return
-    except Exception as e:
-        logging.error(f"Error checking channel membership: {e}")
+def echo_handler(client, message):
+    logging.info("Message received from chat ID: %s ", message.chat.id)  # Log incoming messages
+    client.send_message(message.chat.id, RESPONSE_MESSAGE)
 
     client.send_message(message.chat.id, RESPONSE_MESSAGE)
 
-def shutdown():
-    logging.info("Received shutdown signal. Stopping Pyrogram client...")
-    if app.is_initialized:
-        app.stop()  # Stop the Pyrogram client gracefully
-    logging.info("Bot shutdown complete.")
-
-
-# Register shutdown function (assuming you're using the signal library)
-import signal
-
-signal.signal(signal.SIGTERM, shutdown)
-signal.signal(signal.SIGINT, shutdown)
 
 if __name__ == "__main__":
     print("Bot starting...")
