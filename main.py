@@ -35,7 +35,7 @@ def keep_alive():
             requests.get(BOT_URL)
         except Exception as e:
             logging.error("Ping failed: %s", e)
-        time.sleep(30)
+        time.sleep(20)
 
 
 @app.on_message(filters.private & ~filters.user(EXCLUDED_USER_IDS))
