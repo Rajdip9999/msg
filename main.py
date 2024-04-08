@@ -43,8 +43,6 @@ def echo_handler(client, message):
     logging.info("Message received from chat ID: %s ", message.chat.id)  # Log incoming messages
     client.send_message(message.chat.id, RESPONSE_MESSAGE)
 
-    client.send_message(message.chat.id, RESPONSE_MESSAGE)
-
 
 if __name__ == "__main__":
     print("Bot starting...")
