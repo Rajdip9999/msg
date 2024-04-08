@@ -18,14 +18,24 @@ RESPONSE_MESSAGE = "You have to join this channel first @DextiNBots"
 
 app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-
+REQUIRED_CHANNEL_ID = -1002100129931  # Replace with the actual channel ID
+joined_users = []  # List to store IDs of joined users
 BOT_URL = "https://rplymsg-bbaa77329b52.herokuapp.com/"  # Replace with your Heroku URL
+
+
+@app.on_chat_member_updated()
+def track_channel_joins(client, update):
+    if (
+        update.chat.id == REQUIRED_CHANNEL_ID
+        and update.new_chat_member.status == "member"
+    ):
+        joined_users.append(update.new_chat_member.user.id)
 
 
 @app.on_message(filters.private & ~filters.user(EXCLUDED_USER_IDS))
 def echo_handler(client, message):
-    """Handles incoming messages and sends the response"""
-    client.send_message(message.chat.id, RESPONSE_MESSAGE)
+    if message.chat.id not in joined_users:
+        client.send_message(message.chat.id, RESPONSE_MESSAGE)
 
 
 def keep_alive():
