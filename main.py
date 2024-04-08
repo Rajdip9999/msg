@@ -55,6 +55,18 @@ async def echo_handler(client, message):
 
     client.send_message(message.chat.id, RESPONSE_MESSAGE)
 
+def shutdown():
+    logging.info("Received shutdown signal. Stopping Pyrogram client...")
+    if app.is_initialized:
+        app.stop()  # Stop the Pyrogram client gracefully
+    logging.info("Bot shutdown complete.")
+
+
+# Register shutdown function (assuming you're using the signal library)
+import signal
+
+signal.signal(signal.SIGTERM, shutdown)
+signal.signal(signal.SIGINT, shutdown)
 
 if __name__ == "__main__":
     print("Bot starting...")
